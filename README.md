@@ -11,6 +11,11 @@ In the script, set the value of the `$file` variable to the path of the file to 
 
 Set the values of the `$ip` and `$port` variables to the IP address and port number of the receiving host. 
 
+Execute the script:
+```
+.\script.ps1
+```
+
 Upon execution, the script will establish a connection between the Windows host and the receiving host. It will read bytes from the specified file, and write them to the TCP socket. These bytes will then be received by the Netcat listener on the receiving host and written to a file.
 
 # Example
