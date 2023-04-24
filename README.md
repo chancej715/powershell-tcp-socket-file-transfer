@@ -1,7 +1,5 @@
 # PowerShell TCP Socket File Transfer
-Transfer files over a TCP socket via PowerShell.
-
-This code is a modified version of the code on [this](https://www.reddit.com/r/PowerShell/comments/yjhlv0/comment/iuorp5p/) post.
+Transfer files over a TCP socket via PowerShell. This program was inspired by [this](https://www.reddit.com/r/PowerShell/comments/yjhlv0/comment/iuorp5p/) Reddit comment.
 
 # Usage
 On the receiving host, you may start a Netcat listener which will write received bytes to a file via the following command:
