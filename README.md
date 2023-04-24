@@ -7,9 +7,10 @@ On the receiving host, you may start a Netcat listener which writes bytes receiv
 nc -lp <port> > <file>
 ```
 
-In the script, set the value of the `$file` variable to the path of the file to transfer.
-
-Set the values of the `$ip` and `$port` variables to the IP address and port number of the receiving host. 
+In the script, set the value of the following variables:
+- `$file` path of the file to transfer.
+- `$ip` IP address of the receiving host.
+- `$port` port number of the receiving host.
 
 Execute the script:
 ```
