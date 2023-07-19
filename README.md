@@ -7,39 +7,30 @@ On the receiving host, you may start a Netcat listener which writes bytes receiv
 nc -lp <port> > <file>
 ```
 
-In the script, set the value of the following variables:
-- `$file` path of the file to transfer.
-- `$ip` IP address of the receiving host.
-- `$port` port number of the receiving host.
-
-Execute the script:
-```
-.\script.ps1
+On the Windows host, source the script in a PowerShell session:
+```powershell
+. .\transfer.ps1
 ```
 
-Upon execution, the script will establish a connection between the Windows host and the receiving host. It will read bytes from the specified file, and write them to the TCP socket. These bytes will then be received by the Netcat listener on the receiving host and written to a file.
+Next, call the `Transfer-File` function with the following parameters:
+```powershell
+Transfer-File -IP <ip> -Port <port> -File <file>
+```
+- `-IP` the IPv4 or IPv6 address of the receiving host.
+- `-Port` the port number of the receiving host.
+- `-File` the file to transfer.
 
 # Example
-On my Linux host, I setup a Netcat listener on TCP port `4444` which writes received bytes to a file called `data`:
+There is a file named `archive.zip` on my Windows host that I would like to transfer to my Linux host. On my Linux host, I start a Netcat listener on TCP port `4444` which writes received bytes to a file called `archive.zip`:
 ```
-nc -lp 4444 > data
+nc -lp 4444 > archive.zip
 ```
-
-On my Windows host, I made a file called `data` which contains `text`:
+In a PowerShell session on my Windows host, I first source the script:
 ```powershell
-echo text > data
+. .\transfer.ps1
 ```
-
-In the script, I set the value of the `$file` variable to the path of the file I just created. I set the value of the `$ip` and `$port` variables to the IP address of my Linux host, and the port number that Netcat is listening on:
+Next I call the `Transfer-File` function with the IPv4 and port number of my Linux host, as well as the name of the file I want to transfer. 
 ```powershell
-$file="C:\Users\windows\script.ps1"
-$ip="192.168.1.2"
-$port="4444"
+Transfer-File -IP 10.10.10.11 -Port 4444 -File archive.zip
 ```
-
-I executed the script on my Windows host:
-```powershell
-.\script.ps1
-```
-
-The Netcat listener on my Linux host receives the bytes, writes them to the file `data`, and exits. The file is now on my Linux host.
+The Netcat listener on my Linux host receives the bytes, writes them to the file `archive.zip`, and exits. The file is now on my Linux host.
