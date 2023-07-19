@@ -26,6 +26,7 @@ function Transfer-File
     )
     
     # Read file
+    [IO.Path]::GetFullPath($File)
     [byte[]]$buffer = New-Object byte[] 1024
     $FileStream = [System.IO.File]::OpenRead($File)
 
